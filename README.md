@@ -53,5 +53,4 @@ Users should be able to:
 
 ## Author
 
-- Website - [Berhan Adhana]
 - Frontend Mentor - [@Berhan-Adhana](https://www.frontendmentor.io/profile/Berhan-Adhana)
