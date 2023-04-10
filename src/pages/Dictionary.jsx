@@ -6,11 +6,11 @@ import Header from "../components/Header";
 import Input from "../components/Input";
 import ThemeSwitch from "../components/ThemeSwitch";
 import useFontChange from "../hooks/useFontChange";
+import useFetch from "../hooks/useFetch";
 
 const Dictionary = () => {
   const [word, setWord] = useState("");
-  const [err, setErr] = useState("");
-  const [result, setResult] = useState(null);
+  const [err, result, setErr, setResult] = useFetch(word);
   const [font] = useFontChange();
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -20,22 +20,8 @@ const Dictionary = () => {
       setWord("");
     } else setWord(value);
   };
-  useEffect(() => {
-    const searchWord = async () => {
-      setErr(false);
-      await axios
-        .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-        .then((result) => {
-          setResult(result.data);
-          setErr(null);
-        })
-        .catch((err) => {
-          setResult(null);
-          setErr(err.response.data.message);
-        });
-    };
-    searchWord();
-  }, [word]);
+
+  console.log(result)
 
   // Responsive class names based on font selected and screen sizes
   let headerClassName;
